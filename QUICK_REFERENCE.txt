@@ -1,0 +1,183 @@
+┌─────────────────────────────────────────────────────────────────────────┐
+│                 FUEL EXPENSE TRACKER - QUICK REFERENCE                 │
+└─────────────────────────────────────────────────────────────────────────┘
+
+LOCATION: C:\Users\artiom\Documents\TEstWebSite\
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STARTUP COMMANDS (Run in this order)                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Terminal 1: Start Database
+  cd C:\Users\artiom\Documents\TEstWebSite
+  docker-compose up -d
+
+Terminal 2: Start Backend
+  pip install -r requirements.txt
+  python main.py
+
+Terminal 3: Start Frontend
+  ren frontend_package.json package.json
+  ren frontend_env .env
+  npm install
+  npm start
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ ACCESS POINTS                                                           │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Frontend:          http://localhost:3000
+Backend API:       http://localhost:8000
+API Documentation: http://localhost:8000/docs
+Database:          localhost:5432 (PostgreSQL)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ CREDENTIALS                                                             │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Database:
+  User:     fuel_user
+  Password: fuel_password
+  Database: fuel_tracker
+  Port:     5432
+
+Frontend:
+  Create account on signup page
+
+Backend:
+  Login required (JWT tokens)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ MAIN FILES                                                              │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Backend Entry:     main.py
+Database Setup:    docker-compose.yml
+Frontend Entry:    App.jsx
+Configuration:     .env (backend), frontend_env (frontend)
+Dependencies:      requirements.txt, frontend_package.json
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ PROJECT STRUCTURE                                                       │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Backend:
+  ✓ Secure JWT authentication
+  ✓ User account management
+  ✓ Vehicle CRUD operations
+  ✓ Expense logging & tracking
+  ✓ Analytics endpoints
+  ✓ PostgreSQL database
+
+Frontend:
+  ✓ Beautiful UI with React
+  ✓ Login/Signup pages
+  ✓ Vehicle management
+  ✓ Expense form & history
+  ✓ Analytics dashboard
+  ✓ Responsive design
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ FEATURES                                                                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+✓ Multi-user authentication
+✓ Multiple vehicles per user
+✓ Expense tracking with date, liters, cost
+✓ Cost per liter calculations
+✓ Total spending statistics
+✓ Bar chart (spending by vehicle)
+✓ Pie chart (distribution)
+✓ Statistics table
+✓ Edit/Delete expenses
+✓ Responsive mobile design
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ TECH STACK                                                              │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Backend:        FastAPI + Python
+Database:       PostgreSQL 15 (Docker)
+Frontend:       React 18
+Authentication: JWT + bcrypt
+Charts:         Recharts
+HTTP Client:    Axios
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ COMMON COMMANDS                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Check Docker:
+  docker ps
+  docker logs fuel_tracker_db
+
+Restart Backend:
+  Press Ctrl+C, then: python main.py
+
+Restart Frontend:
+  Press Ctrl+C, then: npm start
+
+Stop All:
+  docker-compose down
+  Kill backend and frontend terminals
+
+Check Database Connection:
+  docker exec -it fuel_tracker_db psql -U fuel_user -d fuel_tracker
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ TROUBLESHOOTING                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Port 3000 in use?
+  set PORT=3001 && npm start
+
+Port 8000 in use?
+  python main.py --port 8001
+
+Docker won't start?
+  docker-compose down
+  docker-compose up -d
+
+npm install fails?
+  rmdir /s node_modules
+  npm cache clean --force
+  npm install
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ API ENDPOINTS                                                           │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Auth:
+  POST   /auth/signup
+  POST   /auth/login
+  GET    /auth/me
+
+Vehicles:
+  POST   /vehicles/
+  GET    /vehicles/
+  PUT    /vehicles/{id}
+  DELETE /vehicles/{id}
+
+Expenses:
+  POST   /expenses/
+  GET    /expenses/
+  PUT    /expenses/{id}
+  DELETE /expenses/{id}
+  GET    /expenses/stats/vehicle-stats
+  GET    /expenses/stats/total-spent
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ DOCUMENTATION FILES                                                     │
+└─────────────────────────────────────────────────────────────────────────┘
+
+README.md              - Complete documentation
+SETUP_GUIDE.txt        - Detailed setup instructions
+FILE_LIST.txt          - File descriptions
+PROJECT_COMPLETE.txt   - Full project overview
+QUICK_REFERENCE.txt    - This file
+
+═══════════════════════════════════════════════════════════════════════════
+
+Ready to use! Start with Step 1 above. 🚀
+
+═══════════════════════════════════════════════════════════════════════════

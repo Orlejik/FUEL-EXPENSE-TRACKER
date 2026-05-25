@@ -1,0 +1,221 @@
+# 🚗 Fuel Expense Tracker - Setup Guide
+
+## ✅ Project Created Successfully!
+
+Your complete fuel expense tracker application is ready. Here's everything that's been created:
+
+### 📁 Project Structure
+
+```
+TEstWebSite/
+├── docker-compose.yml          # PostgreSQL configuration
+├── requirements.txt            # Python dependencies
+├── .env                       # Backend environment variables
+├── main.py                    # FastAPI application entry
+├── database.py                # Database connection setup
+├── models.py                  # SQLAlchemy ORM models
+├── schemas.py                 # Pydantic request/response schemas
+├── auth.py                    # JWT authentication logic
+├── auth_routes.py             # Authentication endpoints
+├── vehicle_routes.py          # Vehicle CRUD endpoints
+├── expense_routes.py          # Expense CRUD & analytics endpoints
+├── README.md                  # Documentation
+├── frontend_package.json      # React dependencies
+├── frontend_env              # Frontend environment variables
+├── App.jsx                    # Main React component
+├── App.css                    # Styling
+├── index.jsx                  # React entry point
+├── index.html                 # HTML template
+├── api.js                     # API client
+├── Login.jsx                  # Login page
+├── Signup.jsx                 # Signup page
+├── Dashboard.jsx              # Main dashboard
+├── VehicleList.jsx            # Vehicle management
+├── ExpenseForm.jsx            # Expense logging
+├── ExpenseList.jsx            # Expense history
+└── Analytics.jsx              # Charts & statistics
+```
+
+## 🚀 Quick Start
+
+### Step 1: Start PostgreSQL Database
+```bash
+cd C:\Users\artiom\Documents\TEstWebSite
+docker-compose up -d
+```
+
+Wait a moment for PostgreSQL to start completely (check with: `docker ps`)
+
+### Step 2: Install Backend Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Start Backend Server
+```bash
+python main.py
+```
+
+You'll see:
+```
+INFO:     Application startup complete
+INFO:     Uvicorn running on http://0.0.0.0:8000
+```
+
+### Step 4: In a NEW terminal, Setup Frontend
+```bash
+# Rename files to correct locations
+cd C:\Users\artiom\Documents\TEstWebSite
+ren frontend_package.json package.json
+ren frontend_env .env
+
+# Install React dependencies
+npm install
+
+# Start React development server
+npm start
+```
+
+### Step 5: Access the Application
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Documentation: http://localhost:8000/docs
+
+## 📋 Features Implemented
+
+✅ **User Authentication**
+- Sign up with email and password
+- Login with JWT tokens
+- Secure password hashing with bcrypt
+
+✅ **Vehicle Management**
+- Add multiple vehicles
+- View all vehicles
+- Update vehicle details
+- Delete vehicles
+
+✅ **Expense Tracking**
+- Log fuel purchases with date, liters, and cost
+- View expense history
+- Edit/delete expenses
+- Filter by vehicle
+
+✅ **Analytics & Reporting**
+- Total spent on fuel
+- Cost per liter calculations
+- Bar charts for spending by vehicle
+- Pie chart distribution
+- Detailed statistics table
+
+## 🔑 Default Credentials
+
+**Database:**
+- User: `fuel_user`
+- Password: `fuel_password`
+- Database: `fuel_tracker`
+- Host: `localhost:5432`
+
+**API Secret Key:** (Change in production!)
+- Currently set to: `your-secret-key-change-this-in-production`
+
+## 📚 API Endpoints
+
+### Authentication
+- `POST /auth/signup` - Register new user
+- `POST /auth/login` - Login user
+- `GET /auth/me` - Get current user profile
+
+### Vehicles (require authentication)
+- `POST /vehicles/` - Create new vehicle
+- `GET /vehicles/` - Get all user vehicles
+- `GET /vehicles/{id}` - Get specific vehicle
+- `PUT /vehicles/{id}` - Update vehicle
+- `DELETE /vehicles/{id}` - Delete vehicle
+
+### Expenses (require authentication)
+- `POST /expenses/` - Log new expense
+- `GET /expenses/` - Get all expenses
+- `GET /expenses/?vehicle_id=1` - Get expenses for specific vehicle
+- `GET /expenses/{id}` - Get specific expense
+- `PUT /expenses/{id}` - Update expense
+- `DELETE /expenses/{id}` - Delete expense
+- `GET /expenses/stats/vehicle-stats` - Get stats per vehicle
+- `GET /expenses/stats/total-spent` - Get total spent
+
+## 🛠 Troubleshooting
+
+### Database won't start
+```bash
+# Check if Docker is running
+docker ps
+
+# View logs
+docker logs fuel_tracker_db
+
+# Stop and restart
+docker-compose down
+docker-compose up -d
+```
+
+### Port already in use
+```bash
+# Backend on different port
+python main.py --port 8001
+
+# Frontend on different port
+PORT=3001 npm start
+```
+
+### Dependencies issue
+```bash
+# Clear cache and reinstall
+pip cache purge
+pip install -r requirements.txt --force-reinstall
+```
+
+## 🔐 Security Notes
+
+⚠️ **Before Production:**
+1. Change `SECRET_KEY` in `.env` file
+2. Set up proper CORS origins
+3. Use strong database password
+4. Enable HTTPS
+5. Add rate limiting
+6. Validate all inputs
+
+## 📝 Environment Variables
+
+**Backend (.env):**
+```
+DATABASE_URL=postgresql://fuel_user:fuel_password@localhost:5432/fuel_tracker
+SECRET_KEY=change-this-in-production
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+**Frontend (.env):**
+```
+REACT_APP_API_URL=http://localhost:8000
+```
+
+## 🎯 Next Steps
+
+1. ✅ Start the backend
+2. ✅ Start the frontend
+3. ✅ Create an account
+4. ✅ Add your vehicles
+5. ✅ Log fuel expenses
+6. ✅ View analytics
+
+## 📖 Additional Notes
+
+- All user data is isolated (each user sees only their vehicles/expenses)
+- JWT tokens expire after 30 minutes (configurable)
+- All passwords are hashed with bcrypt
+- PostgreSQL data persists in Docker volume
+- Frontend automatically handles authentication
+
+## ✨ Enjoy Your Fuel Tracker!
+
+Questions? Check the API documentation at: http://localhost:8000/docs
+
